@@ -1,0 +1,76 @@
+{
+  "name": "zerotix-launcher",
+  "version": "1.0.0",
+  "description": "ZeroTix Minecraft Launcher",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build-win": "electron-builder --win --x64",
+    "build": "electron-builder --win --x64",
+    "dist": "electron-builder --win --x64",
+    "build-linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "mysql2": "^3.11.0",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.zerotix.launcher",
+    "productName": "ZeroTix Launcher",
+    "copyright": "Copyright © 2025 ZeroTix Team",
+    "asar": true,
+    "icon": "assets/icon",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "extraResources": [],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ZeroTix Launcher",
+      "menuCategory": "ZeroTix",
+      "deleteAppDataOnUninstall": false,
+      "displayLanguageSelector": false,
+      "language": "1049",
+      "artifactName": "ZeroTix-Launcher-Setup-${version}.exe"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png",
+      "category": "Game"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "Soldn",
+      "repo": "launcherupdate"
+    }
+  }
+}
